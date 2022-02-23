@@ -219,6 +219,8 @@ function Courseplay:load()
 
 	--- Register additional AI messages.
 	g_currentMission.aiMessageManager:registerMessage("ERROR_FULL", AIMessageErrorIsFull)
+	
+	g_vineScanner:setup()
 end
 
 ------------------------------------------------------------------------------------------------------------------------

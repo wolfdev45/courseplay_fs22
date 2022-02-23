@@ -30,6 +30,8 @@ end
 
 function CpAIFieldWorker.registerEventListeners(vehicleType)
 	SpecializationUtil.registerEventListener(vehicleType, "onLoad", CpAIFieldWorker)
+    SpecializationUtil.registerEventListener(vehicleType, "onDraw", CpAIFieldWorker)
+
 
     SpecializationUtil.registerEventListener(vehicleType, "onCpEmpty", CpAIFieldWorker)
     SpecializationUtil.registerEventListener(vehicleType, "onCpFull", CpAIFieldWorker)
@@ -83,6 +85,11 @@ function CpAIFieldWorker:onLoad(savegame)
     spec.cpJobStartAtFirstWp:getCpJobParameters().startAt:setValue(CpJobParameters.START_AT_FIRST_POINT)
     spec.cpJobStartAtLastWp = g_currentMission.aiJobTypeManager:createJob(AIJobType.FIELDWORK_CP)
     spec.cpJobStartAtLastWp:getCpJobParameters().startAt:setValue(CpJobParameters.START_AT_LAST_POINT)
+end
+
+function CpAIFieldWorker:onDraw()
+    local spec = self.spec_cpAIFieldWorker
+
 end
 
 
@@ -225,7 +232,9 @@ function CpAIFieldWorker:getCanStartCpFieldWork()
             AIUtil.hasImplementWithSpecialization(self, BaleLoader) or
             AIUtil.hasImplementWithSpecialization(self, ForageWagon) or
             -- built in helper can't handle forage harvesters.
-            AIUtil.hasImplementWithSpecialization(self, Cutter) then
+            AIUtil.hasImplementWithSpecialization(self, Cutter) or 
+            AIUtil.hasChildVehicleWithSpecialization(self, VineCutter) or 
+            AIUtil.hasChildVehicleWithSpecialization(self, VinePrepruner) then
         return true
     end
     return self:getCanStartFieldWork()
