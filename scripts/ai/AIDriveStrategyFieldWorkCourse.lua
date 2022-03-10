@@ -597,10 +597,10 @@ end
 
 --- Updates the status variables.
 ---@param status CpStatus
-function AIDriveStrategyFieldWorkCourse:updateCpStatus(status)
+function AIDriveStrategyFieldWorkCourse:updateCpStatus(status, dt)
     ---@type Course
     if self.fieldWorkCourse then
-        status:setWaypointData(self.fieldWorkCourse:getCurrentWaypointIx(), self.fieldWorkCourse:getNumberOfWaypoints())
+        status:setWaypointData(self.fieldWorkCourse, dt, self.startWaypointIx)
     end
 end
 

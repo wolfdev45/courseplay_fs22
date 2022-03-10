@@ -68,6 +68,7 @@ Funktionen:
 		<sourceFile filename="scripts/courseGenerator/Vector.lua"/>
 		<sourceFile filename="scripts/Waypoint.lua"/>
 		<sourceFile filename="scripts/Course.lua"/>
+		<sourceFile filename="scripts/CpRemainingTime.lua"/>
 		<sourceFile filename="scripts/util/CpMathUtil.lua"/>
 		<sourceFile filename="scripts/util/MovingAverage.lua"/>
 		<sourceFile filename="scripts/field/CpFieldUtil.lua"/>
