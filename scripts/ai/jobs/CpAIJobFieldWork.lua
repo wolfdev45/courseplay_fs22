@@ -106,7 +106,7 @@ function CpAIJobFieldWork:validateFieldSetup(isValid, errorMessage)
 	end
 
 	if self.fieldPolygon then
-		self.foundVines = g_vineScanner:findVineNodesInField(self.fieldPolygon, tx, tz)
+		self.foundVines = g_vineScanner:findVineNodesInField(self.fieldPolygon, tx, tz, self.customField~=nil)
 		self.selectedFieldPlot:setWaypoints(self.fieldPolygon)
 		self.selectedFieldPlot:setVisible(true)
 		self.selectedFieldPlot:setBrightColor(true)
