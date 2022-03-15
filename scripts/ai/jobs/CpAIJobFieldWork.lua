@@ -277,3 +277,9 @@ function CpAIJobFieldWork:getCourseGeneratorSettings()
 	end
 	return vehicle, vehicle:getCourseGeneratorSettingsTable(), CpCourseGeneratorSettings.getSettingSetup(vehicle)
 end
+
+function CpAIJobFieldWork:setStartPosition(startPosition)
+	if self.fieldWorkTask then
+		self.fieldWorkTask:setStartPosition(startPosition)
+	end
+end
