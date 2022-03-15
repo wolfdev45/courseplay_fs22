@@ -108,7 +108,7 @@ function CpAIJobFieldWork:validateFieldSetup(isValid, errorMessage)
 	if self.fieldPolygon then
 		self.foundVines = g_vineScanner:findVineNodesInField(self.fieldPolygon, tx, tz, self.customField~=nil)
 		if self.foundVines then 
-			self.fieldPolygon = g_vineScanner:getCourseGeneratorVertices(0)
+			self.fieldPolygon = g_vineScanner:getCourseGeneratorVertices(0, tx, tz)
 		end
 		
 		self.selectedFieldPlot:setWaypoints(self.fieldPolygon)
@@ -194,10 +194,12 @@ function CpAIJobFieldWork:onClickGenerateFieldWorkCourse()
 	local status, ok, course
 	if self.foundVines then 
 		local vineSettings = vehicle:getCpVineSettings()
-		local vertices, width, rowAngleDeg = g_vineScanner:getCourseGeneratorVertices(
-			vineSettings.vineCenterOffset:getValue()
+		local vertices, width, startingPoint, rowAngleDeg = g_vineScanner:getCourseGeneratorVertices(
+			vineSettings.vineCenterOffset:getValue(),
+			tx, tz
 		)
 		status, ok, course = CourseGeneratorInterface.generateVineCourse(vertices,
+			startingPoint,
 			width,
 			AIUtil.getTurningRadius(vehicle),
 			rowAngleDeg,
